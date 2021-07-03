@@ -20,5 +20,5 @@ Each class can be found in the "Fish_Dataset" file with their ground truth label
 
 For example, if you want to access the ground truth images of the shrimp in the dataset, the order should be followed is "Fish->Shrimp->Shrimp GT".
 
-### My classification [notebook]()
-### My segmentation [notebook]()
+### My classification [notebook](https://www.kaggle.com/konstanter/fish-classification-99-accuracy-pytorch-catalyst)
+### My segmentation [notebook](https://www.kaggle.com/konstanter/segmentation-pytorch-unet-99-score)
