@@ -1,0 +1,15 @@
+# Segmentation Full Body MADS Dataset
+## General introduction
+
+Human pose estimation is one of the most popular research topics in the past two decades, especially with the introduction of human pose datasets for benchmark evaluation. These datasets usually capture simple daily life actions. Here, we introduce a new dataset, the Martial Arts, Dancing and Sports (MADS), which consists of challenging martial arts actions (Tai-chi and Karate), dancing actions (hip-hop and jazz), and sports actions (basketball, volleyball, football, rugby, tennis and badminton). Two martial art masters, two dancers and an athlete performed these actions while being recorded with either multiple cameras or a stereo depth camera. In the multi-view or single-view setting, we provide three  color views for 2D image-based human pose estimation algorithms. For depth-based human pose estimation, we provide stereo-based depth images from a single view. All videos have corresponding synchronized and calibrated ground-truth poses, which were captured using a Motion Capture system. We provide initial baseline results on our dataset using a variety of tracking frameworks, including a generative tracker based on the annealing particle filter and robust likelihood function, a discriminative tracker using twin Gaussian processes, and hybrid trackers, such as Personalized Depth Tracker. The results of our evaluation suggest that discriminative approaches perform better than generative approaches when there are enough representative training samples, and that the generative methods are more robust to diversity of poses, but can fail to track when the motion is too quick for the effective search range of the particle filter.
+
+The data was recorded in a studio environment with some background clutter. The video data was recorded with Point Grey Bumblebee-II cameras. The multi-view data was collected with 3 cameras placed around the capture space, while the stereo images were collected from one viewpoint. The multi-view data was captured at 15 fps, and the cameras were synchronized automatically when connected to the same hub. The depth data (stereo image) was captured at 10 fps or 20 fps. The resolution of the images are 1024 × 768. The ground-truth pose data was captured using a MOCAP system which works at 60 fps. All videos and motion capture data are calibrated to the same coordinate and synchronized.
+
+The MADS dataset contains 5 action categories (Tai-chi, Karate, Jazz dance, Hip-hop dance, and Sports), totalling about 53,000 frames. Each action category consists of 6 sequences. Example poses are show below:
+
+
+For example, if you want to access the ground truth images of the shrimp in the dataset, the order should be followed is "Fish->Shrimp->Shrimp GT".
+
+## Kaggle notebook 
+
+My segmentation [notebook](https://www.kaggle.com/konstanter/body-segmentation-pytorch-catalyst)
