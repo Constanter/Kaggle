@@ -7,11 +7,11 @@ was published in ASYU 2020.
 The dataset includes gilt head bream, red sea bream, sea bass, red mullet, horse mackerel,
 black sea sprat, striped red mullet, trout, shrimp image samples.
 
-##Purpose of the work
+## Purpose of the work
 This dataset was collected in order to carry out segmentation, feature extraction, and classification tasks
 and compare the common segmentation, feature extraction, and classification algorithms (Semantic Segmentation, Convolutional Neural Networks, Bag of Features).
 All of the experiment results prove the usability of our dataset for purposes mentioned above.
-##Data Gathering Equipment and Data Augmentation
+## Data Gathering Equipment and Data Augmentation
 Images were collected via 2 different cameras, Kodak Easyshare Z650 and Samsung ST60.
 Therefore, the resolution of the images are 2832 x 2128, 1024 x 768, respectively.
 
@@ -20,9 +20,15 @@ by preserving the aspect ratio. After resizing the images, all labels in the dat
 
 At the end of the augmentation process, the num
 
-##Description of the dataset
+## Description of the dataset
 
 The dataset contains 9 different seafood types. For each class, there are 1000 augmented images and their pair-wise augmented ground truths.
 Each class can be found in the "Fish_Dataset" file with their ground truth labels. All images for each class are ordered from "00000.png" to "01000.png".
 
+
 For example, if you want to access the ground truth images of the shrimp in the dataset, the order should be followed is "Fish->Shrimp->Shrimp GT".
+
+## Link to my notebook
+
+
+My segmentation [notebook](https://www.kaggle.com/konstanter/segmentation-pytorch-unet-99-score)
