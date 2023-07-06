@@ -13,9 +13,10 @@ def get_visualizitons_training(history, need_to_show=False, loss=True):
             plt.show()
         else:
             plt.savefig('./results/loss.png')
+        plt.close()
     else:
         plt.plot(history.history['accuracy'])
-        plt.plot(history.history['val_accuracy '])
+        plt.plot(history.history['val_accuracy'])
         plt.title('model performance')
         plt.ylabel('loss')
         plt.xlabel('epoch')
@@ -24,6 +25,7 @@ def get_visualizitons_training(history, need_to_show=False, loss=True):
             plt.show()
         else:
             plt.savefig('./results/performance.png')
+        plt.close()
 
 
 def get_prediction_type(probability):
