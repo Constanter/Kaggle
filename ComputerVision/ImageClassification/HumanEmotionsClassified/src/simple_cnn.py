@@ -59,6 +59,6 @@ def simple_cnn(
     model.compile(
         optimizer=Adam(learning_rate=MyLRSchedule(lr)),
         loss=CategoricalCrossentropy(),
-        metrics=[CategoricalAccuracy(name='accuraccy'), TopKCategoricalAccuracy(k=2, name='top_k_acc')]
+        metrics=[CategoricalAccuracy(name='accuracy'), TopKCategoricalAccuracy(k=2, name='top_k_acc')]
     )
     return model
