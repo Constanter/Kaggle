@@ -2,7 +2,7 @@ import hydra
 from omegaconf import DictConfig
 from simple_cnn import simple_cnn
 from get_dataset import get_datasets
-from visualization import get_visualizitons_training
+from visualization import get_visualizitons_training, get_confusion_matrix, plot_predictions
 
 CLASS_NAMES = ('angry', 'happy', 'sad')
 
@@ -31,6 +31,8 @@ def train_model(config: DictConfig):
     )
     get_visualizitons_training(history, save_path)
     get_visualizitons_training(history, save_path, loss=False)
+    plot_predictions(validation_dataset, save_path, CLASS_NAMES, model)
+    get_confusion_matrix(validation_dataset, model, save_path)
 
 
 if __name__ == "__main__":
