@@ -1,5 +1,20 @@
 import tensorflow as tf
+from tensorflow.keras.layers import RandomRotation, RandomFlip, RandomContrast
 from typing import Tuple
+from simple_cnn import augment_layers
+
+
+augment_layers = tf.keras.Sequential(
+        [
+            RandomRotation(factor=(-0.025, 0.025)),
+            RandomFlip(mode='horizontal'),
+            RandomContrast(factor=0.1)
+        ]
+)
+
+
+def augment(image, label):
+    return augment_layers(image, training=True), label
 
 
 def get_datasets(
@@ -35,7 +50,7 @@ def get_datasets(
         seed=13
     )
 
-    training_dataset = train_dataset.prefetch(tf.data.AUTOTUNE)
+    training_dataset = train_dataset.map(augment, num_parallel_calls=tf.data.AUTOTUNE).prefetch(tf.data.AUTOTUNE)
     validation_dataset = val_dataset.prefetch(tf.data.AUTOTUNE)
 
     return training_dataset, validation_dataset
