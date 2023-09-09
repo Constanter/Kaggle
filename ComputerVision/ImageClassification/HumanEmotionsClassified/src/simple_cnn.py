@@ -6,11 +6,11 @@ import tensorflow as tf
 
 
 class MyLRSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
-    def __init__(self, initial_learning_rate):
+    def __init__(self, initial_learning_rate: int):
         self.initial_learning_rate = initial_learning_rate
         self.counter = 1
 
-    def __call__(self, step):
+    def __call__(self, step: int):
         rate = self.initial_learning_rate / self.counter
         self.counter += 1
         return rate
