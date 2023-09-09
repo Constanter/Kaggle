@@ -1,7 +1,13 @@
 import tensorflow as tf
+from typing import Tuple
 
 
-def get_datasets(data_folder: str, batch_size: int, im_size: int, class_names: tuple) -> tuple:
+def get_datasets(
+        data_folder: str,
+        batch_size: int,
+        im_size: int,
+        class_names: Tuple[str, str, str]
+) -> Tuple[tf.data.Dataset, tf.data.Dataset]:
     train_directory = f'{data_folder}/train'
     test_directory = f'{data_folder}/test'
 
