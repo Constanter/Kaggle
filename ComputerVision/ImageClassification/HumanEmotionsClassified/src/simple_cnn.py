@@ -5,9 +5,6 @@ from tensorflow.keras.metrics import CategoricalAccuracy,TopKCategoricalAccuracy
 import tensorflow as tf
 
 
-IM_SIZE = 224
-
-
 class MyLRSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
     def __init__(self, initial_learning_rate):
         self.initial_learning_rate = initial_learning_rate
@@ -26,35 +23,41 @@ class MyLRSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):
         return config
 
 
-resize_rescale_layers = tf.keras.Sequential([
-    Resizing(IM_SIZE, IM_SIZE),
-    Rescaling(1./ 255)
-])
-
-
-def create_model():
+def simple_cnn(
+         num_classes: int,
+         lr: int = 1e-3,
+         im_size: int = 224,
+         filters: int = 6,
+         channels: int = 3,
+         kernel_size: int = 3,
+         pool_size: int = 2,
+         strides: int = 2,
+         activation: str = 'relu',
+         dense_nodes: int = 100,
+        **kwargs):
     model = tf.keras.Sequential(
         [
-            resize_rescale_layers,
-            InputLayer(input_shape=(IM_SIZE, IM_SIZE, 3)),
-            Conv2D(filters=6, kernel_size=3, padding='valid', activation='relu'),
+            Resizing(im_size, im_size),
+            Rescaling(1. / 255),
+            InputLayer(input_shape=(im_size, im_size, channels)),
+            Conv2D(filters=filters, kernel_size=kernel_size, padding='valid', activation=activation),
             BatchNormalization(),
-            MaxPool2D(pool_size=2, strides=2),
+            MaxPool2D(pool_size=pool_size, strides=strides),
 
-            Conv2D(filters=16, kernel_size=3, padding='valid', activation='relu'),
+            Conv2D(filters=filters*3, kernel_size=kernel_size, padding='valid', activation=activation),
             BatchNormalization(),
-            MaxPool2D(pool_size=2, strides=2),
+            MaxPool2D(pool_size=pool_size, strides=strides),
 
             Flatten(),
-            Dense(100, activation='relu'),
+            Dense(dense_nodes, activation=activation),
             BatchNormalization(),
-            Dense(10, activation='relu'),
+            Dense(dense_nodes//10, activation=activation),
             BatchNormalization(),
-            Dense(3, activation='softmax'),
+            Dense(num_classes, activation='softmax'),
         ]
     )
     model.compile(
-        optimizer=Adam(learning_rate=MyLRSchedule(1e-3)),
+        optimizer=Adam(learning_rate=MyLRSchedule(lr)),
         loss=CategoricalCrossentropy(),
         metrics=[CategoricalAccuracy(name='accuraccy'), TopKCategoricalAccuracy(k=2, name='top_k_acc')]
     )
