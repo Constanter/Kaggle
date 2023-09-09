@@ -29,6 +29,7 @@ def train_model(config: DictConfig):
         epochs=epochs,
         verbose=1
     )
+    # TODO ADD SAVE MODEL
     get_visualizitons_training(history, save_path)
     get_visualizitons_training(history, save_path, loss=False)
     plot_predictions(validation_dataset, save_path, CLASS_NAMES, model)
