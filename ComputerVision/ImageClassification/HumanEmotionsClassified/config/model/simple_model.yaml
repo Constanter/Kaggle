@@ -1,0 +1,11 @@
+name: simple_model
+num_classes: 3
+lr: 1e-3
+im_size: 224
+filters: 6
+channels: 3
+kernel_size: 3
+pool_size: 2
+strides: 2
+activation: 'relu'
+dense_nodes: 100
