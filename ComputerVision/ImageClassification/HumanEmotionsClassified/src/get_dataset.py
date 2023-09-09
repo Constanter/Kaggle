@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.layers import RandomRotation, RandomFlip, RandomContrast
 from typing import Tuple
-from simple_cnn import augment_layers
 
 
 augment_layers = tf.keras.Sequential(
