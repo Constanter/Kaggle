@@ -34,7 +34,7 @@ def simple_cnn(
          strides: int = 2,
          activation: str = 'relu',
          dense_nodes: int = 100,
-        **kwargs):
+        **kwargs) -> tf.keras.Model:
     model = tf.keras.Sequential(
         [
             Resizing(im_size, im_size),
