@@ -36,10 +36,11 @@ def plot_predictions(dataset, save_path, names, model):
     for image, label in dataset.take(1):
         for i in range(16):
             ax = plt.subplot(4, 4, i + 1)
+            plt.figure(figsize=(18, 18))
             plt.imshow(image[i] / 255.)
             true_label = names[tf.argmax(label[i], axis=0).numpy()]
             predicted_label = names[tf.argmax(model(tf.expand_dims(image[i], axis=0)), axis=-1).numpy()[0]]
-            plt.title(f'True_lbl: {true_label}, \n pred_lbl: {predicted_label}')
+            plt.title(f'True: {true_label}, \n pred: {predicted_label}')
             plt.axis('off')
         plt.savefig(f'{save_path}/predictions_image.png')
 
