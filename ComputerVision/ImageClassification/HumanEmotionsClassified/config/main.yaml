@@ -4,11 +4,12 @@ hydra:
     dir: .
 
 defaults:
-  - process: process1
-  - model: model1
+  - model: simple_model
+  - train_param: params
   - _self_
-
 data:
-  raw: data/raw/sample.csv
-  processed: data/processed/processed.csv
-  final: data/final/final.csv
+  raw: ../data/raw/Emotions-Dataset/
+  result: ../data/result
+
+models:
+  final_chp: ../model/final.pt
